@@ -21,13 +21,13 @@ db
 if(process.env.NODE_ENV === 'production') {
   app
     .use(express.static(path.join(__dirname, 'client/build')))
-    .get('*', (req, res) => res.sendfile(path.join(__dirname, 'client/build/index.html')))
+    .get('*', (req, res) => res.sendfile(path.join(__dirname = 'client/build/index.html')))
 }
 
 app
   .use(bodyParser.urlencoded({ extended: false }))
   .use(bodyParser.json())
   .use(cors())
-  .use('/', router)
+  .use('/api', router)
   .use(logger('dev'))
   .listen(port, () => console.log(`listening on port ${port}`));
