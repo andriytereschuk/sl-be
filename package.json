@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
     "start": "cd server && npm install && npm start",
-    "heroku-postbuild": "cd ../ && cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
     "concurrently": "^4.1.0"
