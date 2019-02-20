@@ -18,12 +18,6 @@ db
   .once('open', () => console.log('connected to the database'))
   .on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-if(process.env.NODE_ENV === 'production') {
-  app
-    .use(express.static(path.join(__dirname, 'client/build')))
-    .get('*', (req, res) => res.sendfile(path.join(__dirname = 'client/build/index.html')))
-}
-
 app
   .use(bodyParser.urlencoded({ extended: false }))
   .use(bodyParser.json())
@@ -31,3 +25,9 @@ app
   .use('/api', router)
   .use(logger('dev'))
   .listen(port, () => console.log(`listening on port ${port}`));
+
+if (process.env.NODE_ENV === 'production') {
+  app
+    .use(express.static(path.resolve(__dirname, '../client/build')))
+    .get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../client/build', 'index.html')));
+}
